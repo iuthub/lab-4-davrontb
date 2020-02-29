@@ -19,7 +19,7 @@
                 
                 <?php
                     foreach (glob("songs/*.mp3") as $filename) {
-                    
+                        if(!isset($_REQUEST["playlist"])){
                 ?>
                     <li class="mp3item">
                         <a href="<?= $filename ?>">
@@ -28,11 +28,11 @@
                             ?>
                         </a>
                     </li>
-                <?php } ?>
+                <?php } } ?>
 
                 <?php
                     foreach (glob("songs/*.txt") as $filename) {
-                    
+                        if(!isset($_REQUEST["playlist"])){
                 ?>
                     <li class="playlistitem">
                         <a href="<?= $filename ?>">
@@ -41,7 +41,49 @@
                             ?>
                         </a>
                     </li>
-                <?php } ?>
+                <?php } }?>
+
+                <?php
+                    if(isset($_REQUEST["playlist"]) && $_REQUEST["playlist"]=="mypicks.txt"){
+                        foreach (glob("songs/*.mp3") as $filename) {
+                            if($filename=="songs/Be More.mp3" || $filename=="songs/Just Because.mp3" ||  $filename=="songs/Drift Away.mp3" ){
+                ?>
+                    <li class="mp3item">
+                        <a href="<?= $filename ?>">
+                            <?=
+                                basename($filename).PHP_EOL;
+                            ?>
+                        </a>
+                    </li>
+                <?php } } } ?>
+
+                <?php
+                    if(isset($_REQUEST["playlist"]) && $_REQUEST["playlist"]=="190M Mix.txt"){
+                        foreach (glob("songs/*.mp3") as $filename) {
+                            if($filename=="songs/Be More.mp3" || $filename=="songs/Hello.mp3" ||  $filename=="songs/Drift Away.mp3" || $filename=="songs/190M Rap.mp3" ||  $filename=="songs/Panda Sneeze.mp3"){
+                ?>
+                    <li class="mp3item">
+                        <a href="<?= $filename ?>">
+                            <?=
+                                basename($filename).PHP_EOL;
+                            ?>
+                        </a>
+                    </li>
+                <?php } } } ?>
+
+                <?php
+                    if(isset($_REQUEST["playlist"]) && $_REQUEST["playlist"]=="playlist.txt"){
+                        foreach (glob("songs/*.mp3") as $filename) {
+                            if($filename=="songs/Be More.mp3" || $filename=="songs/Hello.mp3" ||  $filename=="songs/Drift Away.mp3"  ||  $filename=="songs/Panda Sneeze.mp3"){
+                ?>
+                    <li class="mp3item">
+                        <a href="<?= $filename ?>">
+                            <?=
+                                basename($filename).PHP_EOL;
+                            ?>
+                        </a>
+                    </li>
+                <?php } } } ?>
 
 			</ul>
 		</div>
