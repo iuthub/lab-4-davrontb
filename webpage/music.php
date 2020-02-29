@@ -26,6 +26,16 @@
                             <?=
                                 basename($filename).PHP_EOL;
                             ?>
+                            
+                            <?php
+                                 if(filesize($filename)<=1023)
+                                    echo "(".filesize($filename) ." b)";
+                                if(filesize($filename)>1023 && filesize($filename)<=1048575)
+                                    echo "(".round(filesize($filename)/1024,2) ." kb)";
+                                if(filesize($filename)>1048575)
+                                    echo "(".round(filesize($filename)/1024/1024,2) ." mb)";
+                                
+                            ?>
                         </a>
                     </li>
                 <?php } } ?>
@@ -53,6 +63,15 @@
                             <?=
                                 basename($filename).PHP_EOL;
                             ?>
+                            <?php
+                                 if(filesize($filename)<=1023)
+                                    echo "(".filesize($filename) ." b)";
+                                if(filesize($filename)>1023 && filesize($filename)<=1048575)
+                                    echo "(".round(filesize($filename)/1024,2) ." kb)";
+                                if(filesize($filename)>1048575)
+                                    echo "(".round(filesize($filename)/1024/1024,2) ." mb)";
+                                
+                            ?>
                         </a>
                     </li>
                 <?php } } } ?>
@@ -67,6 +86,15 @@
                             <?=
                                 basename($filename).PHP_EOL;
                             ?>
+                            <?php
+                                 if(filesize($filename)<=1023)
+                                    echo "(".filesize($filename) ." b)";
+                                if(filesize($filename)>1023 && filesize($filename)<=1048575)
+                                    echo "(".round(filesize($filename)/1024,2) ." kb)";
+                                if(filesize($filename)>1048575)
+                                    echo "(".round(filesize($filename)/1024/1024,2) ." mb)";
+                                
+                            ?>
                         </a>
                     </li>
                 <?php } } } ?>
@@ -80,6 +108,15 @@
                         <a href="<?= $filename ?>">
                             <?=
                                 basename($filename).PHP_EOL;
+                            ?>
+                            <?php
+                                 if(filesize($filename)<=1023)
+                                    echo "(".filesize($filename) ." b)";
+                                if(filesize($filename)>1023 && filesize($filename)<=1048575)
+                                    echo "(".round(filesize($filename)/1024,2) ." kb)";
+                                if(filesize($filename)>1048575)
+                                    echo "(".round(filesize($filename)/1024/1024,2) ." mb)";
+                                
                             ?>
                         </a>
                     </li>
