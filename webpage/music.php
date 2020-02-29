@@ -30,6 +30,19 @@
                     </li>
                 <?php } ?>
 
+                <?php
+                    foreach (glob("songs/*.txt") as $filename) {
+                    
+                ?>
+                    <li class="playlistitem">
+                        <a href="<?= $filename ?>">
+                            <?=
+                                basename($filename).PHP_EOL;
+                            ?>
+                        </a>
+                    </li>
+                <?php } ?>
+
 			</ul>
 		</div>
 	</body>
