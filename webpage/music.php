@@ -10,7 +10,9 @@
 		<div id="header">
 
 			<h1>190M Music Playlist Viewer</h1>
-			<h2>Search Through Your Playlists and Music</h2>
+            <h2>Search Through Your Playlists and Music</h2>
+            
+            <h2><a href="http://localhost/lab-4-davrontb/webpage/music.php"> Main page</a></h2>
 		</div>
 
 
@@ -18,7 +20,66 @@
 			<ul id="musiclist">
                 
                 <?php
-                    foreach (glob("songs/*.mp3") as $filename) {
+                function quickSort($arr)
+                {
+                    $count = count($arr);
+                
+                    if ($count < 2) {
+                        return $arr;
+                    }
+                
+                    $leftArray = $rightArray = array();
+                    $middle = $arr [0]; // base value
+                
+                    for ($i = 1; $i < $count; $i++) {
+                        // Less than the reference value, deposited on the left; greater than the reference value, deposited on the right.
+                        if ($arr[$i] < $middle) {
+                            $leftArray[] = $arr[$i];
+                        } else {
+                            $rightArray[] = $arr[$i];
+                        }
+                    }
+                
+                    $leftArray = quickSort($leftArray);
+                    $rightArray = quickSort($rightArray);
+                
+                    return array_merge($leftArray, array($middle), $rightArray);
+                    // reverse order
+                    // return array_merge($rightArray, array($middle), $leftArray);
+                }
+                
+                
+             
+                    function myshuffle($arr)
+                    {   
+                        if(isset($_REQUEST["bysize"])) {return quicksort($arr); }
+                        if(!isset($_REQUEST["shuffle"]))return $arr;
+                        // extract the array keys
+                        $keys = [];
+                        foreach ($arr as $key => $value) {
+                            $keys[] = $key;
+                        }
+                    
+                        // shuffle the keys    
+                        for ($i = count($keys) - 1; $i >= 1; --$i) {
+                            $r = mt_rand(0, $i);
+                            if ($r != $i) {
+                                $tmp = $keys[$i];
+                                $keys[$i] = $keys[$r];
+                                $keys[$r] = $tmp;
+                            }
+                        }
+                    
+                        // reconstitute
+                        $result = [];
+                        foreach ($keys as $key) {
+                            $result[$key] = $arr[$key];
+                        }
+                    
+                        return $result;
+                    }
+                    //$sh=shuffle(glob("songs/*.mp3"));
+                    foreach (myshuffle(glob("songs/*.mp3"))  as $filename) {
                         if(!isset($_REQUEST["playlist"])){
                 ?>
                     <li class="mp3item">
